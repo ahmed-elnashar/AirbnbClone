@@ -1,2 +1,2 @@
 # AirbnbClone
-React Native Airbnb Clone App 
+React Native Airbnb Clone App

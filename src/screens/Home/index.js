@@ -1,20 +1,29 @@
 import React from "react";
-import { ImageBackground, Pressable, Text, View } from "react-native";
+import {
+  ImageBackground,
+  Pressable,
+  SafeAreaView,
+  Text,
+  View,
+} from "react-native";
+
+import { useNavigation } from "@react-navigation/core";
 
 import Fontisto from "react-native-vector-icons/Fontisto";
 
 import styles from "./styles";
 
 const HomeScreen = () => {
+  const navigation = useNavigation();
   return (
-    <View>
+    <SafeAreaView>
       <ImageBackground
         source={require("../../../assets/images/wallpaper.jpg")}
         style={styles.image}
       >
         <Pressable
           style={styles.searchButton}
-          onPress={() => console.warn("Search Button")}
+          onPress={() => navigation.navigate("Destination Search")}
         >
           <Fontisto name={"search"} size={20} color={"#f15454"} />
           <Text style={styles.searchButtonText}>Where are you going?</Text>
@@ -28,7 +37,7 @@ const HomeScreen = () => {
           <Text style={styles.buttonText}>Explore nearby stays</Text>
         </Pressable>
       </ImageBackground>
-    </View>
+    </SafeAreaView>
   );
 };
 

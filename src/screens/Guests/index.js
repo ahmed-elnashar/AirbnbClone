@@ -1,9 +1,12 @@
 import React, { useState } from "react";
-import { Pressable, Text, View } from "react-native";
+import { Pressable, SafeAreaView, Text, View } from "react-native";
+import { useNavigation } from "@react-navigation/core";
 
 import styles from "./styles";
 
 const GuestsScreen = () => {
+  const navigation = useNavigation();
+
   const [adults, setAdults] = useState(0);
   const [children, setChildren] = useState(0);
   const [infants, setInfants] = useState(0);
@@ -35,71 +38,81 @@ const GuestsScreen = () => {
     }
   };
   return (
-    <View>
-      <View style={styles.row}>
-        <View>
-          <Text style={styles.titleLeft}>Adults</Text>
-          <Text style={styles.subTitleLeft}>Ages 13 or above</Text>
+    <SafeAreaView style={styles.container}>
+      <View>
+        <View style={styles.row}>
+          <View>
+            <Text style={styles.titleLeft}>Adults</Text>
+            <Text style={styles.subTitleLeft}>Ages 13 or above</Text>
+          </View>
+          <View style={styles.buttonsContainer}>
+            <Pressable
+              onPress={() => handleChange("adults", "minus")}
+              style={styles.button}
+            >
+              <Text style={styles.buttonText}>-</Text>
+            </Pressable>
+            <Text style={styles.buttonValue}>{adults}</Text>
+            <Pressable
+              onPress={() => handleChange("adults", "plus")}
+              style={styles.button}
+            >
+              <Text>+</Text>
+            </Pressable>
+          </View>
         </View>
-        <View style={styles.buttonsContainer}>
-          <Pressable
-            onPress={() => handleChange("adults", "minus")}
-            style={styles.button}
-          >
-            <Text style={styles.buttonText}>-</Text>
-          </Pressable>
-          <Text style={styles.buttonValue}>{adults}</Text>
-          <Pressable
-            onPress={() => handleChange("adults", "plus")}
-            style={styles.button}
-          >
-            <Text>+</Text>
-          </Pressable>
+        <View style={styles.row}>
+          <View>
+            <Text style={styles.titleLeft}>Children</Text>
+            <Text style={styles.subTitleLeft}>Ages 2 - 12</Text>
+          </View>
+          <View style={styles.buttonsContainer}>
+            <Pressable
+              onPress={() => handleChange("children", "minus")}
+              style={styles.button}
+            >
+              <Text style={styles.buttonText}>-</Text>
+            </Pressable>
+            <Text style={styles.buttonValue}>{children}</Text>
+            <Pressable
+              onPress={() => handleChange("children", "plus")}
+              style={styles.button}
+            >
+              <Text>+</Text>
+            </Pressable>
+          </View>
+        </View>
+        <View style={styles.row}>
+          <View>
+            <Text style={styles.titleLeft}>Infants</Text>
+            <Text style={styles.subTitleLeft}>Under 2</Text>
+          </View>
+          <View style={styles.buttonsContainer}>
+            <Pressable
+              onPress={() => handleChange("infants", "minus")}
+              style={styles.button}
+            >
+              <Text style={styles.buttonText}>-</Text>
+            </Pressable>
+            <Text style={styles.buttonValue}>{infants}</Text>
+            <Pressable
+              onPress={() => handleChange("infants", "plus")}
+              style={styles.button}
+            >
+              <Text>+</Text>
+            </Pressable>
+          </View>
         </View>
       </View>
-      <View style={styles.row}>
-        <View>
-          <Text style={styles.titleLeft}>Children</Text>
-          <Text style={styles.subTitleLeft}>Ages 2 - 12</Text>
-        </View>
-        <View style={styles.buttonsContainer}>
-          <Pressable
-            onPress={() => handleChange("children", "minus")}
-            style={styles.button}
-          >
-            <Text style={styles.buttonText}>-</Text>
-          </Pressable>
-          <Text style={styles.buttonValue}>{children}</Text>
-          <Pressable
-            onPress={() => handleChange("children", "plus")}
-            style={styles.button}
-          >
-            <Text>+</Text>
-          </Pressable>
-        </View>
+      <View>
+        <Pressable
+          onPress={() => navigation.navigate("Explore")}
+          style={styles.search}
+        >
+          <Text style={styles.searchText}>Search</Text>
+        </Pressable>
       </View>
-      <View style={styles.row}>
-        <View>
-          <Text style={styles.titleLeft}>Infants</Text>
-          <Text style={styles.subTitleLeft}>Under 2</Text>
-        </View>
-        <View style={styles.buttonsContainer}>
-          <Pressable
-            onPress={() => handleChange("infants", "minus")}
-            style={styles.button}
-          >
-            <Text style={styles.buttonText}>-</Text>
-          </Pressable>
-          <Text style={styles.buttonValue}>{infants}</Text>
-          <Pressable
-            onPress={() => handleChange("infants", "plus")}
-            style={styles.button}
-          >
-            <Text>+</Text>
-          </Pressable>
-        </View>
-      </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

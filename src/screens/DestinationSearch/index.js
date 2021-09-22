@@ -1,43 +1,37 @@
-import React, { useState } from "react";
-import {
-  FlatList,
-  Pressable,
-  SafeAreaView,
-  Text,
-  TextInput,
-  View,
-} from "react-native";
+import React from "react";
+import { SafeAreaView, View } from "react-native";
 import { useNavigation } from "@react-navigation/core";
 
 import styles from "./styles";
-import Entypo from "react-native-vector-icons/Entypo";
-import search from "../../../assets/data/search";
+import { GOOGLE_API_KEY } from "../../utils/api_keys";
+
+import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
+import SuggestionRow from "./SuggestionRow";
 
 const DestinationSearchScreen = () => {
   const navigation = useNavigation();
-  const [inputText, setInputText] = useState("");
   return (
     <SafeAreaView style={styles.container}>
-      <TextInput
-        style={styles.textInput}
-        placeholder={"Where are you going"}
-        value={inputText}
-        onChange={setInputText}
-      />
-
-      <FlatList
-        data={search}
-        renderItem={({ item }) => (
-          <Pressable
-            onPress={() => navigation.navigate("Guests")}
-            style={styles.row}
-          >
-            <View style={styles.iconContainer}>
-              <Entypo name={"location-pin"} size={30} />
-            </View>
-            <Text style={styles.locationText}>{item.description}</Text>
-          </Pressable>
-        )}
+      <GooglePlacesAutocomplete
+        placeholder="Where are you going"
+        onPress={(data, details = null) => {
+          // 'details' is provided when fetchDetails = true
+          console.log(data, details);
+          navigation.navigate("Guests");
+        }}
+        fetchDetails
+        query={{
+          key: GOOGLE_API_KEY,
+          language: "en",
+          type: "(cities)",
+        }}
+        styles={{
+          textInput: {
+            fontSize: 20,
+          },
+        }}
+        suppressDefaultStyles
+        renderRow={(item) => <SuggestionRow item={item} />}
       />
     </SafeAreaView>
   );

@@ -41,3 +41,5 @@ buck-out/
 \.buckd/
 *.keystore
 !debug.keystore
+
+utils/api_keys.js

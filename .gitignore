@@ -42,4 +42,7 @@ buck-out/
 *.keystore
 !debug.keystore
 
-utils/api_keys.js
+utils/
+api_keys.js
+
+*.env

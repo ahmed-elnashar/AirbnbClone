@@ -5,7 +5,8 @@ import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
 
 import CustomMarker from "../../components/CustomMarker";
 import feed from "../../../assets/data/feed";
-
+import styles from "./styles";
+import PostCarouselItem from "../../components/PostCarouselItem";
 const SearchResultsMapScreen = () => {
   const [selectedPlaceId, setSelectedPlaceId] = useState(null);
   return (
@@ -29,6 +30,9 @@ const SearchResultsMapScreen = () => {
           />
         ))}
       </MapView>
+      <View style={styles.postCarouselContainer}>
+        <PostCarouselItem post={feed[0]} />
+      </View>
     </View>
   );
 };

@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
   postCarouselContainer: {
     position: "absolute",
-    bottom: 40,
+    bottom: 10,
   },
 });
 

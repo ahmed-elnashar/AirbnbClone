@@ -13,7 +13,7 @@ const ExploreNavigator = () => {
     <Stack.Navigator>
       <Stack.Screen
         name={"Welcome"}
-        component={SearchResultsMapScreen}
+        component={HomeScreen}
         options={{ headerShown: false }}
       />
       <Stack.Screen

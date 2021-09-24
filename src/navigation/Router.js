@@ -7,6 +7,7 @@ import HomeTabNavigator from "./HomeTabNavigator";
 import HomeScreen from "../screens/Home";
 import DestinationSearch from "../screens/DestinationSearch";
 import GuestsScreen from "../screens/Guests";
+import PostScreen from "../screens/PostScreen";
 const Stack = createNativeStackNavigator();
 
 const Router = () => {
@@ -27,6 +28,11 @@ const Router = () => {
           component={GuestsScreen}
           name={"Guests"}
           options={{ title: "How many People" }}
+        />
+        <Stack.Screen
+          component={PostScreen}
+          name={"PostDetail"}
+          options={{ title: "Accommodation Details" }}
         />
       </Stack.Navigator>
     </NavigationContainer>
